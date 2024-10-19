@@ -3,8 +3,8 @@ import { ref } from "vue";
 import { useAuthStore } from "../../stores/auth";
 
 const authStore = useAuthStore();
-const userName = ref("user.test@bayarind.id");
-const password = ref("password");
+const userName = ref();
+const password = ref();
 const showPassword = ref(false);
 
 const handleLogin = () => {
