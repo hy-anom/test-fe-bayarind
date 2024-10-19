@@ -1,4 +1,4 @@
-#How to run this project
+# How to run this project
 
 1. clone this repository
 
@@ -6,7 +6,7 @@
 
 3. run `npm run dev`
 
-#Some previews
+# Some previews
 
 ![bayarind 1](https://github.com/user-attachments/assets/89beafec-71ad-4ed1-9fec-ca951bec4f27)
 
