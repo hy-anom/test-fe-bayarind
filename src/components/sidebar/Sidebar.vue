@@ -1,4 +1,10 @@
 <script setup lang="ts">
+import { useAuthStore } from '../../stores/auth';
+  const authStore = useAuthStore();
+  
+  const handleLogout = () => {
+    authStore.logout()
+  }
 </script>
 
 <template>
@@ -16,19 +22,9 @@
           value="inbox"
           to="/"
         ></v-list-item>
-        <!-- <v-list-item
-          prepend-icon="mdi-domain"
-          title="Departments"
-          value="departments"
-          to="/departments"
-        ></v-list-item>
-        <v-list-item
-          prepend-icon="mdi-account-group"
-          title="Positions"
-          value="positions"
-        ></v-list-item> -->
         <v-divider></v-divider>
         <v-list-item
+          @click="handleLogout"
           prepend-icon="mdi-logout"
           title="Log out"
           value="logout"

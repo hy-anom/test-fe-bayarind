@@ -31,9 +31,6 @@ onMounted(() => {
   address.value = employeesStore.employeeToBeEdited?.address;
   departmentId.value = employeesStore.employeeToBeEdited?.departement;
   jobPositionId.value = employeesStore.employeeToBeEdited?.position;
-
-  console.log(filterStore.departments);
-  console.log(filterStore.positions);
 });
 
 const handleEditEmployee = () => {
@@ -47,10 +44,10 @@ const handleEditEmployee = () => {
       )?.id
     : 0;
   const formattedPositionId = filterStore.positions
-  ? filterStore.positions.find(
-      (position) => position.title === jobPositionId.value
-    )?.id
-  : 0;
+    ? filterStore.positions.find(
+        (position) => position.title === jobPositionId.value
+      )?.id
+    : 0;
 
   const employeeToBeEditedForm: IEmployeeEditForm = {
     id: id.value,

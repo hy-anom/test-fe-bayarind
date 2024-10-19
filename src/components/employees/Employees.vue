@@ -24,20 +24,20 @@ const headers = [
 
 onMounted(() => {
   employeesStore.getEmployees();
-})
+});
 
 const handleEditEmployee = (employee: IEmployee) => {
   employeesStore.employeeToBeEdited = employee;
-  router.push(`edit/${employee.id}`)
-}
+  router.push(`edit/${employee.id}`);
+};
 
 const handleCreateNewEmployee = () => {
-  router.push('create');
-}
+  router.push("create");
+};
 
 const handleDeleteEmployee = (employee: IEmployee) => {
   employeesStore.deleteEmployee(employee.id);
-}
+};
 </script>
 
 <template>
@@ -59,8 +59,7 @@ const handleDeleteEmployee = (employee: IEmployee) => {
         </v-text-field>
         <v-btn class="ml-6" @click="handleCreateNewEmployee">
           <v-icon icon="mdi-account-plus"></v-icon>
-          &nbsp;
-          Create New Employee
+          &nbsp; Create New Employee
         </v-btn>
       </v-card-title>
       <v-divider></v-divider>
@@ -83,8 +82,16 @@ const handleDeleteEmployee = (employee: IEmployee) => {
         </template>
         <template v-slot:item.actions="{ item }">
           <div>
-            <v-icon icon="mdi-pencil-box" end @click="handleEditEmployee(item)"></v-icon>
-            <v-icon icon="mdi-delete" end @click="handleDeleteEmployee(item)"></v-icon>
+            <v-icon
+              icon="mdi-pencil-box"
+              end
+              @click="handleEditEmployee(item)"
+            ></v-icon>
+            <v-icon
+              icon="mdi-delete"
+              end
+              @click="handleDeleteEmployee(item)"
+            ></v-icon>
           </div>
         </template>
       </v-data-table>

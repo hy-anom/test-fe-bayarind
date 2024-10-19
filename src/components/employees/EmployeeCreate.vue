@@ -7,7 +7,6 @@ import { useFiltersStore } from "../../stores/filters";
 const employeesStore = useEmployeesStore();
 const filterStore = useFiltersStore();
 
-const id = ref();
 const name = ref();
 const gender = ref();
 const email = ref();
@@ -16,9 +15,6 @@ const dateOfBirth = ref();
 const address = ref();
 const departmentId = ref();
 const jobPositionId = ref();
-
-onMounted(() => {
-});
 
 const handleCreateEmployee = () => {
   const formattedDate = dateOfBirth.value.toISOString().split("T")[0];
@@ -29,10 +25,10 @@ const handleCreateEmployee = () => {
       )?.id
     : 0;
   const formattedPositionId = filterStore.positions
-  ? filterStore.positions.find(
-      (position) => position.title === jobPositionId.value
-    )?.id
-  : 0;
+    ? filterStore.positions.find(
+        (position) => position.title === jobPositionId.value
+      )?.id
+    : 0;
 
   const employeeToBeCreatedForm: IEmployeeCreateForm = {
     name: name.value,

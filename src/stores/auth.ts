@@ -40,8 +40,31 @@ export const useAuthStore = defineStore("authStore", {
         .catch((error) => {
           console.log(error)
         });
- 
     },
+
+    logout() {
+      const headers = new Headers();
+      headers.append("Content-Type", "application/json");
+      headers.append("Authorization", `Bearer ${this.token}`);
+
+      const requestOptions = {
+        method: "POST",
+        headers,
+      };
+
+      fetch(
+        "https://api-interview-vue.bayarind.id/api/auth/logout",
+        requestOptions
+      )
+        .then((response) => response.json())
+        .then(() => {
+          localStorage.removeItem("token");
+          router.push('/login');
+        })
+        .catch((error) => {
+          console.log(error)
+        });
+    }
   },
 
   getters: {
