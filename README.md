@@ -6,6 +6,10 @@
 
 3. run `npm run dev`
 
+# Live preview
+
+Can be accessed from https://test-fe-bayarind.surge.sh/
+
 # Some previews
 
 ![bayarind 1](https://github.com/user-attachments/assets/f4162b3a-9898-42c9-98b7-2d287fa51525)
