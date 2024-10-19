@@ -1,20 +1,15 @@
 <script setup lang="ts">
-import { useAuthStore } from '../../stores/auth';
-  const authStore = useAuthStore();
-  
-  const handleLogout = () => {
-    authStore.logout()
-  }
+import { useAuthStore } from "../../stores/auth";
+const authStore = useAuthStore();
+
+const handleLogout = () => {
+  authStore.logout();
+};
 </script>
 
 <template>
   <v-layout>
-    <v-navigation-drawer
-      image="https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg"
-      theme="dark"
-      permanent
-      width="220"
-    >
+    <v-navigation-drawer color="#161D31" theme="dark" permanent width="220">
       <v-list nav>
         <v-list-item
           prepend-icon="mdi-home"
