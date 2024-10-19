@@ -37,6 +37,6 @@ export interface IEmployeeCreateForm {
   phone: string;
   date_of_birth: string;
   address: string;
-  department_id: string;
-  job_position_id: string;
+  department_id: number;
+  job_position_id: number;
 }

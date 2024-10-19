@@ -2,8 +2,10 @@
 import { onMounted, ref } from "vue";
 import { useEmployeesStore } from "../../stores/employees";
 import { IEmployeeCreateForm } from "../../types/employeesTypes";
+import { useFiltersStore } from "../../stores/filters";
 
 const employeesStore = useEmployeesStore();
+const filterStore = useFiltersStore();
 
 const id = ref();
 const name = ref();
@@ -16,17 +18,21 @@ const departmentId = ref();
 const jobPositionId = ref();
 
 onMounted(() => {
-  // departmentId.value = employeesStore.employeeToBeEdited?.departement;
-  // jobPositionId.value = employeesStore.employeeToBeEdited?.position;
-  departmentId.value = 3;
-  jobPositionId.value = 3;
 });
 
 const handleCreateEmployee = () => {
-  if (!id) return;
-
   const formattedDate = dateOfBirth.value.toISOString().split("T")[0];
   const formattedGender = `${gender.value}`.toLowerCase();
+  const formattedDepartmentId = filterStore.departments
+    ? filterStore.departments.find(
+        (department) => department.title === departmentId.value
+      )?.id
+    : 0;
+  const formattedPositionId = filterStore.positions
+  ? filterStore.positions.find(
+      (position) => position.title === jobPositionId.value
+    )?.id
+  : 0;
 
   const employeeToBeCreatedForm: IEmployeeCreateForm = {
     name: name.value,
@@ -35,11 +41,10 @@ const handleCreateEmployee = () => {
     phone: phone.value,
     date_of_birth: formattedDate,
     address: address.value,
-    department_id: departmentId.value,
-    job_position_id: jobPositionId.value,
+    department_id: formattedDepartmentId || 0,
+    job_position_id: formattedPositionId || 0,
   };
 
-  console.log(employeeToBeCreatedForm);
   employeesStore.createEmployee(employeeToBeCreatedForm);
 };
 </script>
@@ -68,13 +73,13 @@ const handleCreateEmployee = () => {
             class="text-capitalize"
             label="Department"
             v-model="departmentId"
-            :items="['Finance', 'Other']"
+            :items="filterStore.departments"
           ></v-select>
           <v-select
             class="text-capitalize"
             label="Position"
             v-model="jobPositionId"
-            :items="['Manager', 'Other']"
+            :items="filterStore.positions"
           ></v-select>
           <v-btn class="mt-2" type="submit">Submit</v-btn>
         </v-form>
